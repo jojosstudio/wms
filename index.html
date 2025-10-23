@@ -4,6 +4,7 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Digitales Wertmarken-System – Schnell. Sicher. Kontaktlos.</title>
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
 <style>
 :root{
   --bg:#0b0f15; --text:#e9eef6; --muted:#9fb0c2;
@@ -194,6 +195,35 @@ h1{ margin:0 0 10px; font-size:34px; font-weight:900; letter-spacing:.2px; line-
   transition: transform .35s cubic-bezier(.2,.8,.2,1);
   will-change: transform;
 }
+/* Mailingliste Styles */
+.ml-form{ display:grid; gap:12px; }
+.ml-group label{ display:block; font-weight:700; margin-bottom:6px; font-size:13px; }
+.ml-group input[type="email"]{
+  width:100%; padding:12px 14px; border-radius:12px;
+  border:1px solid var(--border);
+  background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+  color:var(--text); font-size:14px;
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+.ml-group input[type="email"]::placeholder{ color:var(--muted); }
+.ml-group input[type="email"]:focus{
+  outline:none; border-color: rgba(89,219,201,.55);
+  box-shadow: 0 0 0 3px rgba(89,219,201,.22);
+}
+.ml-choice{
+  display:flex; gap:10px; flex-wrap:wrap; align-items:center;
+  border:1px solid var(--border); border-radius:12px;
+  padding:10px; background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+}
+.ml-radio{
+  display:flex; align-items:center; gap:8px; padding:6px 8px; border-radius:10px;
+  cursor:pointer; user-select:none;
+}
+.ml-radio input{ accent-color: var(--accent); width:16px; height:16px; }
+.ml-status{ margin-left:8px; font-size:12px; color: var(--muted); }
+.ml-status.error{ color:#ff7b7b; }
+.ml-status.success{ color:#59dbc9; }
+
 </style>
 </head>
 <body>
@@ -204,10 +234,10 @@ h1{ margin:0 0 10px; font-size:34px; font-weight:900; letter-spacing:.2px; line-
     <div class="nav-inner">
       <div class="brand">
         <span class="brand-dot"></span>
-        <span>Wertmarken Digital</span>
+        <span>WMS</span>
       </div>
       <div class="nav-actions">
-        <span class="chip">Sicher • Offline-fähig • Schnell</span>
+        <span class="chip">Sicher • Schnell • Digital</span>
         <button class="btn acc" onclick="document.getElementById('features').scrollIntoView({behavior:'smooth'})">Features</button>
         <button class="btn" onclick="document.getElementById('faq').scrollIntoView({behavior:'smooth'})">FAQ</button>
       </div>
@@ -241,7 +271,7 @@ h1{ margin:0 0 10px; font-size:34px; font-weight:900; letter-spacing:.2px; line-
             </div>
             <h3 style="margin:0 0 6px;">Schnell. Sicher. Einfach.</h3>
             <p style="margin:0; color:var(--muted); font-size:13px;">
-              Optimiert für hohe Besucherzahlen, kurze Wege und zufriedene Teams an der Theke.
+              Optimiert für Kleine und Große Events, kurze Wege und zufriedene Teams an der Theke.
             </p>
           </div>
         </div>
@@ -256,7 +286,7 @@ h1{ margin:0 0 10px; font-size:34px; font-weight:900; letter-spacing:.2px; line-
         <div class="card tile" style="--delay:.05s">
           <div class="icon">🧩</div>
           <h3>Modular & anpassbar</h3>
-          <p>Passt sich eurem Event an: Guthaben-Logik, Limits, Mehrwertsteuer, Reportings – alles flexibel.</p>
+          <p>Individuelle Konfiguration für Guthabenverwaltung, Limitierung, MwSt-Abbildung und Reporting.</p>
         </div>
         <div class="card tile" style="--delay:.15s">
           <div class="icon">🔐</div>
@@ -296,8 +326,8 @@ h1{ margin:0 0 10px; font-size:34px; font-weight:900; letter-spacing:.2px; line-
       <div class="steps">
         <div class="card step">
           <div class="num">1</div>
-          <h3 style="margin:0 0 6px; font-size:16px;">ID generieren</h3>
-          <p class="sub">Beim ersten Öffnen wird eine 10‑stellige Geräte‑ID lokal gespeichert – ganz ohne Registrierung.</p>
+          <h3 style="margin:0 0 6px; font-size:16px;">Website öffnen und ID generieren</h3>
+          <p class="sub">Beim ersten Öffnen der website wird eine 10‑stellige Geräte‑ID lokal gespeichert – ganz ohne Registrierung.</p>
         </div>
         <div class="card step">
           <div class="num">2</div>
@@ -334,7 +364,7 @@ h1{ margin:0 0 10px; font-size:34px; font-weight:900; letter-spacing:.2px; line-
             <span>＋</span>
           </div>
           <div class="faq-a">
-            <p>Für die Anzeige der Infos nicht. Kassenstationen sind für Offline‑Betrieb vorbereitet – Synchronisation erfolgt bei Verbindung.</p>
+            <p>Beim ersten Laden speichert Google Chrome die Website automatisch im Cache. Die restlichen Daten kommen aus dem Kassensystem.</p>
           </div>
         </div>
         <div class="faq-item">
@@ -359,21 +389,73 @@ h1{ margin:0 0 10px; font-size:34px; font-weight:900; letter-spacing:.2px; line-
     </div>
   </section>
 
+   <!-- MAILINGLISTE -->
+<section class="section" id="newsletter">
+  <div class="container">
+    <div class="card" style="padding:20px; border-radius:16px;">
+      <div class="kicker"><span class="dot"></span> Bleib informiert</div>
+      <h2 style="margin:6px 0 10px; font-size:20px;">Mailingliste: news@digitalwms.cloud</h2>
+      <p class="sub" style="margin-bottom:14px;">
+        An- oder abmelden für Updates zu Features, Releases und Event‑Tipps.
+      </p>
+
+      <form class="ml-form" action="https://ml.kundenserver.de/cgi-bin/mailinglist.cgi" method="POST" target="_blank" novalidate>
+        <fieldset class="ml-choice" aria-label="Aktion">
+          <label class="ml-radio">
+            <input type="radio" name="subscribe_r" value="subscribe" checked />
+            <span>Anmelden</span>
+          </label>
+          <label class="ml-radio">
+            <input type="radio" name="subscribe_r" value="unsubscribe" />
+            <span>Abmelden</span>
+          </label>
+        </fieldset>
+
+        <div class="ml-group">
+          <label for="ml-email">E‑Mail‑Adresse</label>
+          <input id="ml-email" name="mailaccount_r" type="email" maxlength="51" required placeholder="name@beispiel.de" autocomplete="email" />
+        </div>
+
+        <div class="ml-group">
+          <label for="ml-email2">E‑Mail erneut</label>
+          <input id="ml-email2" name="mailaccount2_r" type="email" maxlength="51" required placeholder="E‑Mail wiederholen" autocomplete="email" />
+        </div>
+
+        <!-- Provider-Parameter -->
+        <input type="hidden" name="FBMLNAME" value="news@digitalwms.cloud" />
+        <input type="hidden" name="FBLANG" value="de" />
+        <input type="hidden" name="FBURLERROR_L" value="https://ml.kundenserver.de/mailinglist/error.de.html" />
+        <input type="hidden" name="FBURLSUBSCRIBE_L" value="https://ml.kundenserver.de/mailinglist/subscribe.de.html" />
+        <input type="hidden" name="FBURLUNSUBSCRIBE_L" value="https://ml.kundenserver.de/mailinglist/unsubscribe.de.html" />
+        <input type="hidden" name="FBURLINVALID_L" value="https://ml.kundenserver.de/mailinglist/invalid.de.html" />
+
+        <div class="hero-cta" style="margin-top:10px;">
+          <button type="submit" class="btn acc">Absenden</button>
+          <button type="reset" class="btn">Zurücksetzen</button>
+          <span id="ml-status" class="ml-status" aria-live="polite"></span>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
   <!-- CTA -->
   <section class="section">
     <div class="container card" style="padding:20px; text-align:center;">
       <h3 style="margin:0 0 6px;">Bereit für bessere Schlangen?</h3>
       <p class="sub" style="margin-bottom:12px;">Fragt uns für euren nächsten Event – wir beraten bei Setup, Kassen und Teamtraining.</p>
       <div class="hero-cta" style="justify-content:center;">
-        <a class="btn acc" href="#">Kontakt aufnehmen</a>
+        <a class="btn acc" href="mailto:info@dein-event.de?subject=Kontaktanfrage&body=Hallo%20Team,%0Aich%20habe%20eine%20Frage%20zu%20...">Kontakt aufnehmen</a>
         <a class="btn" href="#">Infos für Orga‑Teams</a>
+        
       </div>
     </div>
   </section>
 
+
   <!-- FOOTER -->
   <footer class="footer">
-    © 2025 Wertmarken Digital • Made for events with ❤️ • code+design friendly
+    © 2025 Wertmarken Digital • Made for events with ❤️
   </footer>
 </div>
 
@@ -409,6 +491,33 @@ const observer = new IntersectionObserver(entries=>{
   });
 },{ threshold: 0.18 });
 document.querySelectorAll('.tile').forEach(t=>observer.observe(t));
+
+(function(){
+  const form = document.querySelector('.ml-form');
+  if(!form) return;
+  const email = document.getElementById('ml-email');
+  const email2 = document.getElementById('ml-email2');
+  const status = document.getElementById('ml-status');
+
+  function setStatus(msg, type){
+    status.textContent = msg;
+    status.className = 'ml-status ' + (type || '');
+  }
+
+  form.addEventListener('submit', (e)=>{
+    if(!email.value.trim() || !email2.value.trim()){
+      e.preventDefault(); setStatus('Bitte beide E‑Mail‑Felder ausfüllen.', 'error'); return;
+    }
+    if(email.value.trim() !== email2.value.trim()){
+      e.preventDefault(); setStatus('Die E‑Mail‑Adressen stimmen nicht überein.', 'error'); email2.focus(); return;
+    }
+    if(!email.checkValidity() || !email2.checkValidity()){
+      e.preventDefault(); setStatus('Bitte eine gültige E‑Mail‑Adresse eingeben.', 'error'); return;
+    }
+    setStatus('Wird gesendet …', 'success');
+  });
+})();
 </script>
+
 </body>
 </html>
